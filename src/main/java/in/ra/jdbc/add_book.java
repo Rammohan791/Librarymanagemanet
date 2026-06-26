@@ -21,7 +21,12 @@ public class add_book extends HttpServlet{
 		PrintWriter out=resp.getWriter();
 		try {
 			   Class.forName("com.mysql.cj.jdbc.Driver");
-			   Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/college","root","rammohan@123");
+			String url = System.getenv("mysql://root:mkDUllBwyxZCEtYTBTTgKNNIDfGEKPbt@mysql.railway.internal:3306/railway"); 
+            String user = System.getenv("root");
+            String password = System.getenv("mkDUllBwyxZCEtYTBTTgKNNIDfGEKPbt");
+            
+            //  Connection establish karna
+            con = DriverManager.getConnection(url, user, password);
 			   PreparedStatement ps=con.prepareStatement("insert into books values(?,?)");
 			   ps.setString(1, book_name);
 			   ps.setString(2, book_id);
