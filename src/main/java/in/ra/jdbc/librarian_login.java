@@ -24,7 +24,12 @@ public class librarian_login extends HttpServlet{
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/librarian","root","rammohan@123");
+			String url = System.getenv("mysql://root:mkDUllBwyxZCEtYTBTTgKNNIDfGEKPbt@mysql.railway.internal:3306/railway"); 
+            String user = System.getenv("root");
+            String password = System.getenv("mkDUllBwyxZCEtYTBTTgKNNIDfGEKPbt");
+            
+            //  Connection establish karna
+            con = DriverManager.getConnection(url, user, password);
 			PreparedStatement ps=con.prepareStatement("insert into librarian values(?,?,?,?)");
 			ps.setString(1, name);
 			ps.setString(2, college_id);
