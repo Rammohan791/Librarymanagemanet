@@ -23,7 +23,12 @@ public class submit_book extends HttpServlet{
         try {
 			
         	Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection connn=DriverManager.getConnection("jdbc:mysql://localhost:3306/bookinformation","root","rammohan@123");		
+			String url = System.getenv("mysql://root:mkDUllBwyxZCEtYTBTTgKNNIDfGEKPbt@mysql.railway.internal:3306/railway"); 
+            String user = System.getenv("root");
+            String password = System.getenv("mkDUllBwyxZCEtYTBTTgKNNIDfGEKPbt");
+            
+            //  Connection establish karna
+            con = DriverManager.getConnection(url, user, password);
         	PreparedStatement psss=connn.prepareStatement("delete from book where library_id=? and book_id=?");
 			    psss.setString(1, library_id);
 			    psss.setString(2, book_id);
