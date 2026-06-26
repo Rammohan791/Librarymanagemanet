@@ -26,7 +26,12 @@ public class Librarianlgn extends HttpServlet{
 		String collegepass=req.getParameter("collegepass");
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/librarian","root","rammohan@123");
+            String url = System.getenv("mysql://root:mkDUllBwyxZCEtYTBTTgKNNIDfGEKPbt@mysql.railway.internal:3306/railway"); 
+            String user = System.getenv("root");
+            String password = System.getenv("mkDUllBwyxZCEtYTBTTgKNNIDfGEKPbt");
+            
+            //  Connection establish karna
+            con = DriverManager.getConnection(url, user, password);
 			PreparedStatement ps=con.prepareStatement("select * from librarian where college_id=? and collegepass=?");
 			ps.setString(1, college_id);
 			ps.setString(2, collegepass);
