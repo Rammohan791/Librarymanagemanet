@@ -26,9 +26,13 @@ public class issuebook extends HttpServlet{
          String fname="";
          try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection connn=DriverManager.getConnection("jdbc:mysql://localhost:3306/bookinformation","root","rammohan@123");		
-			Connection conn=DriverManager.getConnection("jdbc:mysql://localhost:3306/bookinformation","root","rammohan@123");
-			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/college","root","rammohan@123");
+	//3con       
+			 String url = System.getenv("mysql://root:mkDUllBwyxZCEtYTBTTgKNNIDfGEKPbt@mysql.railway.internal:3306/railway"); 
+            String user = System.getenv("root");
+            String password = System.getenv("mkDUllBwyxZCEtYTBTTgKNNIDfGEKPbt");
+            
+            //  Connection establish karna
+            con = DriverManager.getConnection(url, user, password);
 			PreparedStatement ps=con.prepareStatement("select * from students where rollno=? and library_id=?");
 		    ps.setString(1,rollno);
 		    ps.setString(2, library_id);
@@ -37,7 +41,7 @@ public class issuebook extends HttpServlet{
 				resp.setContentType("text/html");
 			  fname=rs.getString("fname");
 			  
-				PreparedStatement psss=connn.prepareStatement("select * from book where library_id=? and book_id=?");
+				PreparedStatement psss=con.prepareStatement("select * from book where library_id=? and book_id=?");
   			    psss.setString(1, library_id);
   			    psss.setString(2, book_id);
   			    ResultSet rss=psss.executeQuery();
@@ -49,8 +53,8 @@ public class issuebook extends HttpServlet{
   				} else {
 
                   try {
-                	  PreparedStatement books=conn.prepareStatement("select count(*) from book");
-      				PreparedStatement pss=conn.prepareStatement("insert into book values(?,?,?,?,?,?)");
+                	  PreparedStatement books=con.prepareStatement("select count(*) from book");
+      				PreparedStatement pss=con.prepareStatement("insert into book values(?,?,?,?,?,?)");
       			    pss.setString(1, fname);
       				pss.setString(2,rollno);
       			    pss.setString(3, library_id);
