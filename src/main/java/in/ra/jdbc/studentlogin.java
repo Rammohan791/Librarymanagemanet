@@ -26,7 +26,12 @@ public class studentlogin extends HttpServlet {
 		try {
 			
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/college","root","rammohan@123");
+	        String url = System.getenv("mysql://root:mkDUllBwyxZCEtYTBTTgKNNIDfGEKPbt@mysql.railway.internal:3306/railway"); 
+            String user = System.getenv("root");
+            String password = System.getenv("mkDUllBwyxZCEtYTBTTgKNNIDfGEKPbt");
+            
+            //  Connection establish karna
+            con = DriverManager.getConnection(url, user, password);
 			PreparedStatement ps=con.prepareStatement("select * from students where rollno=? and library_id=?");
 		    ps.setString(1,rollno);
 		    ps.setString(2, library_id);
