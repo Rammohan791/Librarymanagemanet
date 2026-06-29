@@ -26,8 +26,9 @@ public class Librarianlgn extends HttpServlet{
 		String collegepass=req.getParameter("collegepass");
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = System.getenv("mysql://root:mkDUllBwyxZCEtYTBTTgKNNIDfGEKPbt@mysql.railway.internal:3306/railway"); 
-            String user = System.getenv("root");
+            // String url = System.getenv("mysql://root:mkDUllBwyxZCEtYTBTTgKNNIDfGEKPbt@mysql.railway.internal:3306/railway"); 
+           String url = "jdbc:mysql://reseau.proxy.rlwy.net:56511/railway";
+			String user = System.getenv("root");
             String password = System.getenv("mkDUllBwyxZCEtYTBTTgKNNIDfGEKPbt");
             
             //  Connection establish karna
